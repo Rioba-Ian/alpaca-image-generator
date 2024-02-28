@@ -1,11 +1,19 @@
-import { createEffect, createSignal, For } from "solid-js";
+import { createEffect, createSignal, For, onCleanup } from "solid-js";
 import alpaca from "../lib/alpaca";
 import { useStore } from "../store/alpaca";
 
 export default function AlpacaAccessories() {
  const accessories = alpaca.map((item) => item);
+ //background image
  const setBgImg = useStore((state) => state.setImage);
-
+ // ears
+ const setEarImg = useStore((state) => state.setEars);
+ // eyes
+ const setEyeImg = useStore((state) => state.setEyes);
+ //hair
+ const setHairImg = useStore((state) => state.setHair);
+ // legs
+ const setLegImg = useStore((state) => state.setLegs);
  const [labels] = createSignal(accessories);
  const [selectedAccessory, setSelectedAccessory] = createSignal<number>(0);
  const [styleLabels, setStyleLabels] = createSignal<
@@ -14,17 +22,41 @@ export default function AlpacaAccessories() {
  const [selectedStyle, setSelectedStyle] = createSignal<string>("default");
 
  createEffect(() => {
-  if (accessories) {
-   setStyleLabels(
-    accessories[selectedAccessory()].items.map((item) => {
-     return { id: item.id, label: item.label, filepath: item.filename };
-    })
-   );
+  setStyleLabels(
+   accessories[selectedAccessory()].items.map((item) => {
+    return { id: item.id, label: item.label, filepath: item.filename };
+   })
+  );
+
+  const isStyleInPath = styleLabels().some(
+   (item) => item.filepath === selectedStyle()
+  );
+
+  if (selectedAccessory() === 0) {
+   if (!isStyleInPath) {
+    setBgImg("default");
+   } else {
+    setBgImg(selectedStyle());
+   }
+   console.log(styleLabels(), selectedStyle());
   }
 
-  if (selectedAccessory() === 0 && selectedStyle()) {
-   setBgImg(selectedStyle());
+  if (selectedAccessory() === 1) {
+   setEarImg(selectedStyle());
   }
+
+  if (selectedAccessory() === 2) {
+   setEyeImg(selectedStyle());
+  }
+
+  if (selectedAccessory() === 3) {
+   setHairImg(selectedStyle());
+  }
+
+  if (selectedAccessory() === 4) {
+   setLegImg(selectedStyle());
+  }
+  console.log(styleLabels());
  });
 
  return (
@@ -33,7 +65,7 @@ export default function AlpacaAccessories() {
     <h2 class="uppercase text-xl font-bold">Accessorize the Alpaca's</h2>
     <div
      id="accesorize-controls"
-     class="w-1/2 flex items-center justify-start flex-wrap gap-4 my-4"
+     class="w-3/5 flex items-center justify-start flex-wrap gap-4 my-4"
     >
      <For each={labels()}>
       {(label, _i) => (
