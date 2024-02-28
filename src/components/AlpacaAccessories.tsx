@@ -1,23 +1,30 @@
 import { createEffect, createSignal, For } from "solid-js";
 import alpaca from "../lib/alpaca";
+import { useStore } from "../store/alpaca";
 
 export default function AlpacaAccessories() {
- const accessories = alpaca.map((item) => item).reverse();
+ const accessories = alpaca.map((item) => item);
+ const setBgImg = useStore((state) => state.setImage);
 
  const [labels] = createSignal(accessories);
- const [selectedAccessory, setSelectedAccessory] = createSignal<number>(1);
+ const [selectedAccessory, setSelectedAccessory] = createSignal<number>(0);
  const [styleLabels, setStyleLabels] = createSignal<
-  { id: number; label: string }[]
+  { id: number; label: string; filepath: string }[]
  >([]);
-
- console.log(accessories);
+ const [selectedStyle, setSelectedStyle] = createSignal<string>("default");
 
  createEffect(() => {
-  setStyleLabels(
-   accessories[selectedAccessory() - 1].items.map((item) => {
-    return { id: item.id, label: item.label };
-   })
-  );
+  if (accessories) {
+   setStyleLabels(
+    accessories[selectedAccessory()].items.map((item) => {
+     return { id: item.id, label: item.label, filepath: item.filename };
+    })
+   );
+  }
+
+  if (selectedAccessory() === 0 && selectedStyle()) {
+   setBgImg(selectedStyle());
+  }
  });
 
  return (
@@ -44,10 +51,13 @@ export default function AlpacaAccessories() {
    </div>
    <div id="styles">
     <h2 class="uppercase text-xl font-bold">style {selectedAccessory()}</h2>
-    <div id="accessorize-styles" class="w-1/2 space-x-3 space-y-4">
+    <div id="accessorize-styles" class="w-4/5 space-x-3 space-y-4">
      <For each={styleLabels()}>
       {(item, _id) => (
-       <button class="btn--toggles focus:bg-blue-900 focus:text-white">
+       <button
+        class="btn--toggles focus:bg-blue-900 focus:text-white"
+        onClick={() => setSelectedStyle(item.filepath)}
+       >
         {item.label}
        </button>
       )}
