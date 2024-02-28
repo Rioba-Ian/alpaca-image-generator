@@ -6,13 +6,13 @@ export default function AlpacaImage() {
  const [bgColor, setBgColor] = createSignal(imageBg().image);
  // Create a Signal for the image path
  const [backgroundImgPath, setBackgroundImgPath] = createSignal(
-  `src/assets/alpaca/backgrounds/${bgColor()}.png`
+  `./src/assets/alpaca/backgrounds/${bgColor()}.png`
  );
 
  // Update the image path when the background color changes
  createEffect(() => {
   setBgColor(imageBg().image);
-  setBackgroundImgPath(`src/assets/alpaca/backgrounds/${bgColor()}.png`);
+  setBackgroundImgPath(`./src/assets/alpaca/backgrounds/${bgColor()}.png`);
  });
 
  return (
