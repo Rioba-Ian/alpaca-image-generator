@@ -2,13 +2,15 @@ import { createEffect, createSignal, For } from "solid-js";
 import alpaca from "../lib/alpaca";
 
 export default function AlpacaAccessories() {
- const accessories = alpaca.filter((item) => item.id !== 0).map((item) => item);
+ const accessories = alpaca.map((item) => item).reverse();
 
  const [labels] = createSignal(accessories);
  const [selectedAccessory, setSelectedAccessory] = createSignal<number>(1);
  const [styleLabels, setStyleLabels] = createSignal<
   { id: number; label: string }[]
  >([]);
+
+ console.log(accessories);
 
  createEffect(() => {
   setStyleLabels(
