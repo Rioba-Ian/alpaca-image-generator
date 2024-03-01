@@ -79,7 +79,8 @@ export default function AlpacaAccessories() {
     setAccessory("neck", selectedStyle());
    }
   }
-  console.log(styleLabels());
+
+  setAccessory("nose", "nose");
  });
 
  return (

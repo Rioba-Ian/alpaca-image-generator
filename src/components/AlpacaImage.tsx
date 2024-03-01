@@ -9,6 +9,9 @@ export default function AlpacaImage() {
   eyes: eyesStyle,
   neck: neckStyle,
   leg: legStyle,
+  hair: hairStyle,
+  mouth: mouthStyle,
+  nose,
  } = state;
  const [ImgPath, setImgPath] = createSignal({
   background: `/alpaca/backgrounds/${bgColor}.png`,
@@ -16,6 +19,9 @@ export default function AlpacaImage() {
   eyes: `/alpaca/eyes/${eyesStyle}.png`,
   neck: `/alpaca/neck/${neckStyle}.png`,
   leg: `/alpaca/leg/${legStyle}.png`,
+  hair: `/alpaca/hair/${hairStyle}.png`,
+  mouth: `/alpaca/mouth/${mouthStyle}.png`,
+  nose: `/alpaca/${nose}.png`,
  });
 
  // Update the image path when the background color changes
@@ -27,6 +33,9 @@ export default function AlpacaImage() {
    eyes: eyesStyle,
    neck: neckStyle,
    leg: legStyle,
+   hair: hairStyle,
+   mouth: mouthStyle,
+   nose,
   } = state;
   setImgPath({
    background: `/alpaca/backgrounds/${bgColor}.png`,
@@ -34,6 +43,9 @@ export default function AlpacaImage() {
    eyes: `/alpaca/eyes/${eyesStyle}.png`,
    neck: `/alpaca/neck/${neckStyle}.png`,
    leg: `/alpaca/leg/${legStyle}.png`,
+   hair: `/alpaca/hair/${hairStyle}.png`,
+   mouth: `/alpaca/mouth/${mouthStyle}.png`,
+   nose: `/alpaca/${nose}.png`,
   });
  });
 
@@ -66,8 +78,23 @@ export default function AlpacaImage() {
     />
     <img
      src={ImgPath().leg}
-     alt="ears image for alpaca"
+     alt="leg image for alpaca"
      class="z-10 absolute  top-0 left-0"
+    />
+    <img
+     src={ImgPath().hair}
+     alt="hair image for alpaca"
+     class="z-10 absolute top-0 bottom-0 left-0"
+    />
+    <img
+     src={ImgPath().mouth}
+     alt="mouth image for alpaca"
+     class="z-20 absolute top-0 bottom-0"
+    />
+    <img
+     src={ImgPath().nose}
+     alt="nose image for alpaca"
+     class="z-10 absolute top-0 bottom-0 "
     />
    </div>
   </section>

@@ -8,6 +8,7 @@ export type AlpacaAccessoriesState = {
  leg: string;
  mouth: string;
  neck: string;
+ nose: string;
 };
 
 type AlpacaMethods = {
@@ -27,6 +28,7 @@ export const useStore = createWithSignal<AlpacaState>((set) => ({
  hair: "default",
  mouth: "default",
  neck: "default",
+ nose: "default",
  setAccessory: (accessory, newValue) =>
   set((_state) => ({ [accessory]: newValue })),
 }));
