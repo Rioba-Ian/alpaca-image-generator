@@ -84,7 +84,7 @@ export default function AlpacaImage() {
     <img
      src={ImgPath().hair}
      alt="hair image for alpaca"
-     class="z-10 absolute top-0 bottom-0 left-0"
+     class="z-20 absolute top-0 bottom-0 left-0"
     />
     <img
      src={ImgPath().mouth}
