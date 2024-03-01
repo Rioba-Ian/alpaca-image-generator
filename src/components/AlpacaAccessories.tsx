@@ -80,6 +80,16 @@ export default function AlpacaAccessories() {
    }
   }
 
+  if (selectedAccessory() === 7) {
+   if (!isStyleInPath) {
+    setAccessory("accessory", "headphone");
+   } else if (selectedStyle() === "default") {
+    setAccessory("accessory", "headphone");
+   } else {
+    setAccessory("accessory", selectedStyle());
+   }
+  }
+
   setAccessory("nose", "nose");
  });
 

@@ -11,6 +11,7 @@ export default function AlpacaImage() {
   leg: legStyle,
   hair: hairStyle,
   mouth: mouthStyle,
+  accessory: accessoryStyle,
   nose,
  } = state;
  const [ImgPath, setImgPath] = createSignal({
@@ -21,6 +22,7 @@ export default function AlpacaImage() {
   leg: `/alpaca/leg/${legStyle}.png`,
   hair: `/alpaca/hair/${hairStyle}.png`,
   mouth: `/alpaca/mouth/${mouthStyle}.png`,
+  accessory: `/alpaca/accessories/${accessoryStyle}.png`,
   nose: `/alpaca/${nose}.png`,
  });
 
@@ -35,6 +37,7 @@ export default function AlpacaImage() {
    leg: legStyle,
    hair: hairStyle,
    mouth: mouthStyle,
+   accessory: accessoryStyle,
    nose,
   } = state;
   setImgPath({
@@ -45,6 +48,7 @@ export default function AlpacaImage() {
    leg: `/alpaca/leg/${legStyle}.png`,
    hair: `/alpaca/hair/${hairStyle}.png`,
    mouth: `/alpaca/mouth/${mouthStyle}.png`,
+   accessory: `/alpaca/accessories/${accessoryStyle}.png`,
    nose: `/alpaca/${nose}.png`,
   });
  });
@@ -62,6 +66,11 @@ export default function AlpacaImage() {
      class="-z-1 absolute"
     />
     <img
+     src={ImgPath().accessory}
+     alt="accessory style image for alpaca"
+     class="z-50 absolute top-0 bottom-0"
+    />
+    <img
      src={ImgPath().ears}
      alt="ears image for alpaca"
      class="z-10 absolute top-0 bottom-0"
@@ -74,7 +83,7 @@ export default function AlpacaImage() {
     <img
      src={ImgPath().eyes}
      alt="eyes image for alpaca"
-     class="z-20 absolute top-0 -bottom-6"
+     class="z-30 absolute top-0 -bottom-6"
     />
     <img
      src={ImgPath().leg}
