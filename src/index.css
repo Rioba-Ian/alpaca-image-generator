@@ -14,13 +14,13 @@ html {
 }
 
 body {
- @apply bg-slate-100;
+ @apply bg-[#282A36] text-white;
 }
 
 .btn--toggles {
- @apply bg-blue-100 text-blue-800 hover:bg-blue-900 hover:text-white  py-3 px-6 rounded-3xl text-lg;
+ @apply bg-[#282A36] text-[#F8F8F2] hover:bg-[#282A36] hover:text-[#f8b659] py-1 md:py-3 px-4 md:px-6 rounded-3xl text-sm md:text-lg border-2 border-[#f8b659];
 }
 
 #generator-buttons > button {
- @apply bg-white py-4 px-12 text-neutral-800 font-bold text-lg;
+ @apply bg-white py-2 px-4 md:py-4  md:px-12 text-neutral-800 font-bold text-sm  md:text-lg;
 }

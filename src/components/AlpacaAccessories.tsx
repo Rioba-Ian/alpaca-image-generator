@@ -94,17 +94,19 @@ export default function AlpacaAccessories() {
  });
 
  return (
-  <section>
+  <section class="mt-32 md:mt-0">
    <div id="accessories">
-    <h2 class="uppercase text-xl font-bold">Accessorize the Alpaca's</h2>
+    <h2 class="uppercase text-sm md:text-xl font-bold">
+     Accessorize the Alpaca's
+    </h2>
     <div
      id="accesorize-controls"
-     class="w-3/5 flex items-center justify-start flex-wrap gap-4 my-4"
+     class="md:w-4/5 flex items-center justify-start flex-wrap gap-1 md:gap-4 my-4"
     >
      <For each={labels()}>
       {(label, _i) => (
        <button
-        class="btn--toggles focus:bg-blue-900 focus:text-white"
+        class="btn--toggles focus:bg-[#FFB86C] focus:text-white"
         onClick={() => {
          setSelectedAccessory(label.id);
         }}
@@ -116,8 +118,11 @@ export default function AlpacaAccessories() {
     </div>
    </div>
    <div id="styles">
-    <h2 class="uppercase text-xl font-bold">style {selectedAccessory()}</h2>
-    <div id="accessorize-styles" class="w-4/5 space-x-3 space-y-4">
+    <h2 class="uppercase text-sm md:text-xl font-bold">style </h2>
+    <div
+     id="accessorize-styles"
+     class="md:w-4/5 space-x-1 md:space-x-3 space-y-4"
+    >
      <For each={styleLabels()}>
       {(item, _id) => (
        <button
