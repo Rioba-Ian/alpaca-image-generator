@@ -6,14 +6,6 @@ export default function AlpacaImageGenerator() {
    <div>
     <AlpacaImage />
    </div>
-
-   <div
-    id="generator-buttons"
-    class="translate-y-60 md:translate-y-72 flex items-center mx-auto gap-4 "
-   >
-    <button>🔀 Random</button>
-    <button>🖼️ Download</button>
-   </div>
   </div>
  );
 }

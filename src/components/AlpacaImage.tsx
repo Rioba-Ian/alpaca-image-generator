@@ -54,7 +54,7 @@ export default function AlpacaImage() {
  });
 
  return (
-  <section class="my-4 relative">
+  <section class="my-4 relative flex flex-col">
    <div
     id="background-image"
     class="relative"
@@ -105,6 +105,13 @@ export default function AlpacaImage() {
      alt="nose image for alpaca"
      class="z-10 absolute top-0 bottom-0 "
     />
+   </div>
+
+   <div class=" md:absolute md:-bottom-96 translate-y-64 md:translate-x-0  ">
+    <div id="generator-buttons" class="flex items-center mx-auto gap-4">
+     <button>🔀 Random</button>
+     <button>🖼️ Download</button>
+    </div>
    </div>
   </section>
  );

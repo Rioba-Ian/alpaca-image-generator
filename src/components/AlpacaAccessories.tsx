@@ -94,7 +94,7 @@ export default function AlpacaAccessories() {
  });
 
  return (
-  <section class="mt-32 md:mt-0">
+  <section class="mt-14 md:mt-0">
    <div id="accessories">
     <h2 class="uppercase text-sm md:text-xl font-bold">
      Accessorize the Alpaca's
