@@ -1,19 +1,11 @@
-import { createEffect, createSignal, For, onCleanup } from "solid-js";
+import { createEffect, createSignal, For } from "solid-js";
 import alpaca from "../lib/alpaca";
 import { useStore } from "../store/alpaca";
 
 export default function AlpacaAccessories() {
  const accessories = alpaca.map((item) => item);
- //background image
- const setBgImg = useStore((state) => state.setImage);
- // ears
- const setEarImg = useStore((state) => state.setEars);
- // eyes
- const setEyeImg = useStore((state) => state.setEyes);
- //hair
- const setHairImg = useStore((state) => state.setHair);
- // legs
- const setLegImg = useStore((state) => state.setLegs);
+ // set specific accessory
+ const setAccessory = useStore((state) => state.setAccessory);
  const [labels] = createSignal(accessories);
  const [selectedAccessory, setSelectedAccessory] = createSignal<number>(0);
  const [styleLabels, setStyleLabels] = createSignal<
@@ -34,27 +26,58 @@ export default function AlpacaAccessories() {
 
   if (selectedAccessory() === 0) {
    if (!isStyleInPath) {
-    setBgImg("default");
+    setAccessory("image", "default");
    } else {
-    setBgImg(selectedStyle());
+    setAccessory("image", selectedStyle());
    }
-   console.log(styleLabels(), selectedStyle());
   }
 
   if (selectedAccessory() === 1) {
-   setEarImg(selectedStyle());
+   if (!isStyleInPath) {
+    setAccessory("ears", "default");
+   } else {
+    setAccessory("ears", selectedStyle());
+   }
   }
 
   if (selectedAccessory() === 2) {
-   setEyeImg(selectedStyle());
+   if (!isStyleInPath) {
+    setAccessory("eyes", "default");
+   } else {
+    setAccessory("eyes", selectedStyle());
+   }
   }
 
   if (selectedAccessory() === 3) {
-   setHairImg(selectedStyle());
+   if (!isStyleInPath) {
+    setAccessory("hair", "default");
+   } else {
+    setAccessory("hair", selectedStyle());
+   }
   }
 
   if (selectedAccessory() === 4) {
-   setLegImg(selectedStyle());
+   if (!isStyleInPath) {
+    setAccessory("leg", "default");
+   } else {
+    setAccessory("leg", selectedStyle());
+   }
+  }
+
+  if (selectedAccessory() === 5) {
+   if (!isStyleInPath) {
+    setAccessory("mouth", "default");
+   } else {
+    setAccessory("mouth", selectedStyle());
+   }
+  }
+
+  if (selectedAccessory() === 6) {
+   if (!isStyleInPath) {
+    setAccessory("neck", "default");
+   } else {
+    setAccessory("neck", selectedStyle());
+   }
   }
   console.log(styleLabels());
  });
