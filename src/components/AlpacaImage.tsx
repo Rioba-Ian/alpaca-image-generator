@@ -1,5 +1,6 @@
 import { createEffect, createSignal } from "solid-js";
 import { accessor } from "../store/alpaca";
+import html2canvas from "html2canvas";
 
 export default function AlpacaImage() {
  const state = accessor();
@@ -53,6 +54,32 @@ export default function AlpacaImage() {
   });
  });
 
+ const handleDownloadImage = async () => {
+  const element = document.getElementById("image-container");
+  const bgImage = document.getElementById("image-background-alpaca");
+
+  if (!element || !bgImage) {
+   console.error("Element not found.");
+   return;
+  }
+
+  element.style.height = `${bgImage.offsetHeight}px`;
+
+  try {
+   const canvas = await html2canvas(element);
+
+   const dataUrl = canvas.toDataURL("image/png");
+
+   // Create a link element and trigger download
+   const link = document.createElement("a");
+   link.download = "alpaca.png";
+   link.href = dataUrl;
+   link.click();
+  } catch (error) {
+   console.error("Error capturing image:", error);
+  }
+ };
+
  return (
   <section class="my-4 relative flex flex-col">
    <div
@@ -62,6 +89,7 @@ export default function AlpacaImage() {
    >
     <img
      src={ImgPath().background}
+     id="image-background-alpaca"
      alt="background image for alpaca"
      class="-z-1 absolute"
     />
@@ -110,7 +138,7 @@ export default function AlpacaImage() {
    <div class=" md:absolute md:-bottom-96 translate-y-64 md:translate-x-0  ">
     <div id="generator-buttons" class="flex items-center mx-auto gap-4">
      <button>🔀 Random</button>
-     <button>🖼️ Download</button>
+     <button onClick={handleDownloadImage}>🖼️ Download</button>
     </div>
    </div>
   </section>
