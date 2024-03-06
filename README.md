@@ -1,28 +1,25 @@
+# Alpaca Image Generator
+
+This project is a web application that allows users to generate custom alpaca images. It is built using SolidJS, TypeScript, and Vite.
+
+## Features
+
+- Customizable alpaca images
+- Global state management with Zustand
+- Image downloading using html2canvas
+
+## Installation
+
+1. Clone the repository: `git clone https://github.com/your-username/alpaca-image-generator.git`
+2. Install dependencies: `npm install`
+
 ## Usage
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+1. Start the development server: `npm run dev`
+2. Open your browser and navigate to `http://localhost:5173`
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## Screenshots
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm run dev`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-Learn more about deploying your application with the [documentations](https://vitejs.dev/guide/static-deploy.html)
+![alt text](image-2.png)
+![alt text](image.png)
+![alt text](image-1.png)
