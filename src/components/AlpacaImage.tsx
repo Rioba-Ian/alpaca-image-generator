@@ -1,9 +1,13 @@
 import { createEffect, createSignal } from "solid-js";
 import { accessor } from "../store/alpaca";
+import { setAlpaca, alpaca as alpacaRandom } from "../store/randomize";
+import alpaca from "../lib/alpaca";
 import html2canvas from "html2canvas";
 
 export default function AlpacaImage() {
  const state = accessor();
+ const accessories = alpaca.map((item) => item);
+
  const {
   image: bgColor,
   ears: earColor,
@@ -15,6 +19,7 @@ export default function AlpacaImage() {
   accessory: accessoryStyle,
   nose,
  } = state;
+
  const [ImgPath, setImgPath] = createSignal({
   background: `/alpaca/backgrounds/${bgColor}.png`,
   ears: `/alpaca/ears/${earColor}.png`,
@@ -52,7 +57,7 @@ export default function AlpacaImage() {
    accessory: `/alpaca/accessories/${accessoryStyle}.png`,
    nose: `/alpaca/${nose}.png`,
   });
- });
+ }, [alpacaRandom.accessory, alpacaRandom.item]);
 
  const handleDownloadImage = async () => {
   const element = document.getElementById("image-container");
@@ -78,6 +83,25 @@ export default function AlpacaImage() {
   } catch (error) {
    console.error("Error capturing image:", error);
   }
+ };
+
+ const handleRandomize = () => {
+  const randomSelectedAccessory = Math.floor(
+   Math.random() * (accessories.length - 1)
+  );
+
+  const accessoryItemsRemoveDefaults = accessories[
+   randomSelectedAccessory
+  ].items.filter((accessory) => accessory.label !== "Default");
+
+  const randomSelectedItem = Math.floor(
+   Math.random() * (accessoryItemsRemoveDefaults.length - 1)
+  );
+
+  setAlpaca({
+   accessory: accessories[randomSelectedAccessory].directory,
+   item: accessoryItemsRemoveDefaults[randomSelectedItem].filename,
+  });
  };
 
  return (
@@ -137,7 +161,7 @@ export default function AlpacaImage() {
 
    <div class=" md:absolute md:-bottom-96 translate-y-64 md:translate-x-0  ">
     <div id="generator-buttons" class="flex items-center mx-auto gap-4">
-     <button>🔀 Random</button>
+     <button onClick={handleRandomize}>🔀 Random</button>
      <button onClick={handleDownloadImage}>🖼️ Download</button>
     </div>
    </div>

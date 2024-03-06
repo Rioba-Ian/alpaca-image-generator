@@ -2,7 +2,7 @@ const alpaca = [
  {
   id: 0,
   label: "Backgrounds",
-  directory: "backgrounds",
+  directory: "image",
   selected: false,
   items: [
    { id: 0, label: "Default", filename: "default", selected: false },
@@ -138,7 +138,7 @@ const alpaca = [
  {
   id: 7,
   label: "Accessories",
-  directory: "accessories",
+  directory: "accessory",
   selected: false,
   items: [
    { id: 0, label: "Default", filename: "default", selected: false },

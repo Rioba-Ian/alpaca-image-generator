@@ -29,7 +29,7 @@ export const useStore = createWithSignal<AlpacaState>((set) => ({
  hair: "default",
  mouth: "default",
  neck: "default",
- nose: "default",
+ nose: "nose",
  accessory: "",
  setAccessory: (accessory, newValue) =>
   set((_state) => ({ [accessory]: newValue })),

@@ -1,11 +1,13 @@
 import { createEffect, createSignal, For } from "solid-js";
 import alpaca from "../lib/alpaca";
-import { useStore } from "../store/alpaca";
+import { AlpacaAccessoriesState, useStore } from "../store/alpaca";
+import { alpaca as alpacaRandom } from "../store/randomize";
 
 export default function AlpacaAccessories() {
  const accessories = alpaca.map((item) => item);
  // set specific accessory
  const setAccessory = useStore((state) => state.setAccessory);
+
  const [labels] = createSignal(accessories);
  const [selectedAccessory, setSelectedAccessory] = createSignal<number>(0);
  const [styleLabels, setStyleLabels] = createSignal<
@@ -89,9 +91,19 @@ export default function AlpacaAccessories() {
     setAccessory("accessory", selectedStyle());
    }
   }
+ }, [
+  selectedAccessory,
+  selectedStyle,
+  alpacaRandom.accessory,
+  alpacaRandom.item,
+ ]);
 
-  setAccessory("nose", "nose");
- });
+ createEffect(() => {
+  setAccessory(
+   alpacaRandom.accessory as keyof AlpacaAccessoriesState,
+   alpacaRandom.item
+  );
+ }, [alpacaRandom.accessory, alpacaRandom.item]);
 
  return (
   <section class="mt-14 md:mt-0">
